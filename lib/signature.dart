@@ -24,30 +24,44 @@ class _SignatureState extends State<Signature> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      /// 当用户触摸屏幕并拖动时触发，该回调会接收一个details参数，包含触摸事件的详细信息
-      onPanUpdate: (details) {
-        setState(() {
-          /// RederBox对象表示组件在屏幕上的几何形状和位置信息
-          RenderBox? referenceBox = context.findRenderObject() as RenderBox;
+    return Scaffold(
+      body: GestureDetector(
+        /// 当用户触摸屏幕并拖动时触发，该回调会接收一个details参数，包含触摸事件的详细信息
+        onPanUpdate: (details) {
+          setState(() {
+            /// RederBox对象表示组件在屏幕上的几何形状和位置信息
+            RenderBox? referenceBox = context.findRenderObject() as RenderBox;
 
-          /// 将全局坐标转换为局部坐标，以便在SignaturePainter中绘制
-          Offset localPosition =
-              referenceBox.globalToLocal(details.globalPosition);
+            /// 将全局坐标转换为局部坐标，以便在SignaturePainter中绘制
+            Offset localPosition =
+                referenceBox.globalToLocal(details.globalPosition);
 
-          /// 存储用户绘制的点
-          _points = List.from(_points)..add(localPosition);
-        });
-      },
+            /// 存储用户绘制的点
+            _points = List.from(_points)..add(localPosition);
+          });
+        },
 
-      /// 用户松开手指时触发，将null添加到点列表中，表示绘制结束。
-      onPanEnd: (details) => _points.add(null),
+        /// 用户松开手指时触发，将null添加到点列表中，表示绘制结束。
+        onPanEnd: (details) => _points.add(null),
 
-      /// 使用 CustomPaint 组件来绘制签名，传入自定义的Painter
-      /// 并设置组件的大小为无限大，即占满整个屏幕
-      child: CustomPaint(
-        painter: SignaturePainter(_points),
-        size: Size.infinite,
+        /// 使用 CustomPaint 组件来绘制签名，传入自定义的Painter
+        /// 并设置组件的大小为无限大，即占满整个屏幕
+        child: CustomPaint(
+          painter: SignaturePainter(_points),
+          size: Size.infinite,
+        ),
+      ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: 'Back',
+            onPressed: () => Navigator.of(context).pop(),
+            tooltip: 'Back',
+            child: const Icon(Icons.arrow_back),
+          ),
+          const SizedBox(height: 10),
+        ],
       ),
     );
   }

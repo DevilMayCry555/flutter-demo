@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'counter.dart';
 import 'fade.dart';
 import 'home.dart';
 import 'list.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/a': (context) => const SampleAppPage(title: 'List'),
         '/b': (context) => const Signature(title: 'Canvas'),
         '/c': (context) => const MyFade(title: 'Animate'),
+        '/d': (context) => const MyCounter(title: 'Counter'),
       },
     );
   }
