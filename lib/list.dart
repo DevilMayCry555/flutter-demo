@@ -58,28 +58,11 @@ class _SampleAppPageState extends State<SampleAppPage> {
     );
   }
 
-  List<Widget> _getList(contextParent) {
+  List<Widget> _getList(parent) {
     List<Widget> widgets = [];
     for (int i = 0; i < _list.length; i++) {
-      Map item = _list[i];
       widgets.add(GestureDetector(
-        onTap: () => showDialog<String>(
-          context: contextParent,
-          builder: (BuildContext context) => AlertDialog(
-            title: Text(item['title']),
-            content: Text(item['body']),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: const Text('Cancel'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'OK'),
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        ),
+        onTap: () => _openModal(parent, i),
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Text('Row $i'),
@@ -87,5 +70,26 @@ class _SampleAppPageState extends State<SampleAppPage> {
       ));
     }
     return widgets;
+  }
+
+  void _openModal(parent, int index) {
+    Map item = _list[index];
+    showDialog<String>(
+      context: parent,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(item['title']),
+        content: Text(item['body']),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Cancel'),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'OK'),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
   }
 }
