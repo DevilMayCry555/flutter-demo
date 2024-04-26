@@ -23,11 +23,16 @@ class SampleAppPage extends StatefulWidget {
 /// 列表
 class _SampleAppPageState extends State<SampleAppPage> {
   List _list = [];
+  var loading = false;
 
   Future<void> _fetchData() async {
+    setState(() {
+      loading = true;
+    });
     await loadData().then((value) => {
           setState(() {
             _list = value;
+            loading = false;
           })
         });
   }
@@ -37,8 +42,13 @@ class _SampleAppPageState extends State<SampleAppPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: ListView(children: _getListData(context)),
+      body: loading
+          ? const Center(
+              child: Text('loading...'),
+            )
+          : ListView(children: _getListData(context)),
       floatingActionButton: FloatingActionButton(
         heroTag: 'Async',
         tooltip: 'fetch',
@@ -52,14 +62,12 @@ class _SampleAppPageState extends State<SampleAppPage> {
     List<Widget> widgets = [];
     for (int i = 0; i < _list.length; i++) {
       Map item = _list[i];
-      String title = item['title'];
-      String body = item['body'];
       widgets.add(GestureDetector(
         onTap: () => showDialog<String>(
           context: contextParent,
           builder: (BuildContext context) => AlertDialog(
-            title: Text(title),
-            content: Text(body),
+            title: Text(item['title']),
+            content: Text(item['body']),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.pop(context, 'Cancel'),
