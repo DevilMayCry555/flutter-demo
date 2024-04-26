@@ -34,26 +34,27 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.of(context).pushNamed('/a'),
-              child: const Text('List'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.of(context).pushNamed('/b'),
-              child: const Text('Canvas'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.of(context).pushNamed('/c'),
-              child: const Text('Animate'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.of(context).pushNamed('/d'),
-              child: const Text('Counter'),
-            ),
-          ],
+          children: _getRouter(context),
         ),
       ),
     );
   }
+}
+
+Map routes = {
+  '/a': 'List',
+  '/b': 'Canvas',
+  '/c': 'Animate',
+  '/d': 'Counter',
+};
+List<Widget> _getRouter(contextParent) {
+  List<Widget> widgets = [];
+  for (var key in routes.keys) {
+    String label = routes[key];
+    widgets.add(TextButton(
+      onPressed: () => Navigator.of(contextParent).pushNamed(key),
+      child: Text(label),
+    ));
+  }
+  return widgets;
 }

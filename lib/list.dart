@@ -48,7 +48,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
           ? const Center(
               child: Text('loading...'),
             )
-          : ListView(children: _getListData(context)),
+          : ListView(children: _getList(context)),
       floatingActionButton: FloatingActionButton(
         heroTag: 'Async',
         tooltip: 'fetch',
@@ -58,7 +58,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
     );
   }
 
-  List<Widget> _getListData(contextParent) {
+  List<Widget> _getList(contextParent) {
     List<Widget> widgets = [];
     for (int i = 0; i < _list.length; i++) {
       Map item = _list[i];
