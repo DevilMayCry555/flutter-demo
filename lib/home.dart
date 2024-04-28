@@ -46,6 +46,7 @@ Map routes = {
   '/b': 'Canvas',
   '/c': 'Animate',
   '/d': 'Counter',
+  '/e': 'JueJin',
 };
 List<Widget> _getRouter(contextParent) {
   List<Widget> widgets = [];

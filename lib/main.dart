@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'counter.dart';
 import 'fade.dart';
 import 'home.dart';
+import 'juejin.dart';
 import 'list.dart';
 import 'signature.dart';
 
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         '/b': (context) => const Signature(title: 'Canvas'),
         '/c': (context) => const MyFade(title: 'Animate'),
         '/d': (context) => const MyCounter(title: 'Counter'),
+        '/e': (context) => const JueJinPage(title: 'JueJin'),
       },
     );
   }

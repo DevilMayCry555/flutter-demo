@@ -49,6 +49,19 @@ class _SampleAppPageState extends State<SampleAppPage> {
               child: Text('loading...'),
             )
           : ListView(children: _getList(context)),
+      // 惰性加载
+      // : ListView.builder(
+      //     itemCount: _list.length,
+      //     itemBuilder: (context, i) {
+      //       return GestureDetector(
+      //         onTap: () => _openModal(context, i),
+      //         child: Padding(
+      //           padding: const EdgeInsets.all(10),
+      //           child: Text('Row $i'),
+      //         ),
+      //       );
+      //     },
+      //   ),
       floatingActionButton: FloatingActionButton(
         heroTag: 'Async',
         tooltip: 'fetch',
