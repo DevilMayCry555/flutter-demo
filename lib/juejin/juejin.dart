@@ -16,10 +16,10 @@ class _JueJinPageState extends State<JueJinPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(widget.title),
-      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      // ),
+      appBar: AppBar(
+        title: Text(widget.title),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
       body: Container(
         color: Colors.white,
         child: const Column(

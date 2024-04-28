@@ -8,7 +8,7 @@ class JueJinMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 100,
+      itemCount: 20,
       itemBuilder: (context, i) {
         return GestureDetector(
           onTap: () => print(context),

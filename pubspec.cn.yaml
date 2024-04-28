@@ -2,7 +2,7 @@ name: hello_flutter # 项目名称
 description: A new Flutter project.. #项目描述
 publish_to: "none" # 防止上传到pub.dev   这个类似与maven
 
-version: 1.0.0+1 # 版本号 → 前面是版本名字 +1是第一个版本
+version: 1.0.0+2 # 版本号 → 前面是版本名字 +1是第一个版本
 
 environment: # 定义程序所需的环境
   sdk: ">=3.1.5 <4.0.0" # 程序所需Dart SDK的版本范围

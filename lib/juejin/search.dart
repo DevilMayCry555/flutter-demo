@@ -28,7 +28,7 @@ class SearchBarWidget extends StatelessWidget {
                     Icon(Icons.search, color: Color(0xFF8C8D92)),
                     SizedBox(width: 8.0), // 图标和文本之间的间距
                     Text(
-                      '搜索稀土掘金',
+                      'i am not search bar',
                       style: TextStyle(
                           fontSize: 14.0, // 字体大小
                           color: Color(0xFF8C8D92), // 设置字体颜色
