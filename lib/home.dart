@@ -37,6 +37,37 @@ class MyHomePage extends StatelessWidget {
           children: _getRouter(context),
         ),
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: const <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color(0xFF5A78EA),
+              ),
+              child: Text(
+                "lalaland",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.score),
+              title: Text('我的积分'),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('系统设置'),
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('退出登录'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
