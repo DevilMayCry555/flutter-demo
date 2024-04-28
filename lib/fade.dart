@@ -15,7 +15,7 @@ class MyFade extends StatefulWidget {
   final String title;
 
   @override
-  State<MyFade> createState() => _MyFadeTest();
+  State<StatefulWidget> createState() => _MyFadeTest();
 }
 
 /// 动画

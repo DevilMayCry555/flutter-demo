@@ -15,7 +15,7 @@ class Signature extends StatefulWidget {
   final String title;
 
   @override
-  State<Signature> createState() => _SignatureState();
+  State<StatefulWidget> createState() => _SignatureState();
 }
 
 /// canvas

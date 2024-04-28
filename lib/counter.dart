@@ -14,7 +14,7 @@ class MyCounter extends StatefulWidget {
   final String title;
 
   @override
-  State<MyCounter> createState() => _MyCounterState();
+  State<StatefulWidget> createState() => _MyCounterState();
 }
 
 class _MyCounterState extends State<MyCounter> {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'counter.dart';
 import 'fade.dart';
 import 'home.dart';
-import 'juejin.dart';
+import 'juejin/juejin.dart';
 import 'list.dart';
 import 'signature.dart';
 

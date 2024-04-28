@@ -17,7 +17,7 @@ class SampleAppPage extends StatefulWidget {
   final String title;
 
   @override
-  State<SampleAppPage> createState() => _SampleAppPageState();
+  State<StatefulWidget> createState() => _SampleAppPageState();
 }
 
 /// 列表

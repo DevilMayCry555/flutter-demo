@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
-
-class JueJinPage extends StatefulWidget {
-  const JueJinPage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<JueJinPage> createState() => _JueJinPageState();
-}
-
 // 顶部搜索栏
+
 class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({super.key});
 
@@ -52,19 +44,5 @@ class SearchBarWidget extends StatelessWidget {
             const Icon(Icons.assistant_photo)
           ],
         ));
-  }
-}
-
-class _JueJinPageState extends State<JueJinPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: const Column(
-          children: [SearchBarWidget()], // 实例化这个搜索栏Widget
-        ),
-      ),
-    );
   }
 }
