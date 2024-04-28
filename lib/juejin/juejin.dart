@@ -6,6 +6,7 @@ import 'tab.dart';
 
 class JueJinPage extends StatefulWidget {
   const JueJinPage({super.key, required this.title});
+
   final String title;
 
   @override
