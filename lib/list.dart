@@ -29,12 +29,11 @@ class _SampleAppPageState extends State<SampleAppPage> {
     setState(() {
       loading = true;
     });
-    await loadData().then((value) => {
-          setState(() {
-            _list = value;
-            loading = false;
-          })
-        });
+    var res = await axios.get('/posts');
+    setState(() {
+      _list = res.data;
+      loading = false;
+    });
   }
 
   @override
