@@ -16,7 +16,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
   List _list = [];
   var loading = false;
 
-  Future<void> _fetchData() async {
+  Future<void> fetchData() async {
     setState(() {
       loading = true;
     });
@@ -25,6 +25,12 @@ class _SampleAppPageState extends State<SampleAppPage> {
       _list = res.data;
       loading = false;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
   }
 
   @override
@@ -52,16 +58,6 @@ class _SampleAppPageState extends State<SampleAppPage> {
       //       );
       //     },
       //   ),
-      floatingActionButton: FloatingActionButton(
-        heroTag: 'Async',
-        tooltip: 'fetch',
-        onPressed: () => {
-          _fetchData().onError((error, stackTrace) {
-            _openModal(context, 'error', error.toString());
-          })
-        },
-        child: const Icon(Icons.brush),
-      ),
     );
   }
 
