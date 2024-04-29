@@ -6,6 +6,7 @@ import 'home.dart';
 import 'juejin/juejin.dart';
 import 'list.dart';
 import 'signature.dart';
+import 'splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Home Page'),
+      home: const SplashScreen(),
       routes: <String, WidgetBuilder>{
         '/a': (context) => const SampleAppPage(title: 'List'),
         '/b': (context) => const Signature(title: 'Canvas'),

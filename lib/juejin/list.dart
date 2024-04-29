@@ -12,7 +12,7 @@ class JueJinMainPage extends StatelessWidget {
       itemBuilder: (context, i) {
         return ListTile(
           leading: const Text('leading'),
-          title: Text('Row ${i + 1}'),
+          title: Text('$title ${i + 1}'),
           subtitle: const Text('subtitle'),
           trailing: const Icon(Icons.more),
         );

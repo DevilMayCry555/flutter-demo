@@ -28,12 +28,6 @@ class _SampleAppPageState extends State<SampleAppPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -58,6 +52,12 @@ class _SampleAppPageState extends State<SampleAppPage> {
       //       );
       //     },
       //   ),
+      floatingActionButton: FloatingActionButton(
+        heroTag: 'Async',
+        tooltip: 'Fetch',
+        onPressed: fetchData,
+        child: const Icon(Icons.refresh),
+      ),
     );
   }
 
