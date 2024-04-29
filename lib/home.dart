@@ -38,35 +38,7 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: const <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color(0xFF5A78EA),
-              ),
-              child: Text(
-                "lalaland",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.score),
-              title: Text('我的积分'),
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('系统设置'),
-            ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('退出登录'),
-            ),
-          ],
-        ),
+        child: _leftDrawer(),
       ),
     );
   }
@@ -79,14 +51,46 @@ Map routes = {
   '/d': 'Counter',
   '/e': 'JueJin',
 };
-List<Widget> _getRouter(contextParent) {
+List<Widget> _getRouter(parent) {
   List<Widget> widgets = [];
   for (var key in routes.keys) {
     String label = routes[key];
     widgets.add(TextButton(
-      onPressed: () => Navigator.of(contextParent).pushNamed(key),
+      onPressed: () => Navigator.of(parent).pushNamed(key),
       child: Text(label),
     ));
   }
   return widgets;
+}
+
+ListView _leftDrawer() {
+  return ListView(
+    padding: EdgeInsets.zero,
+    children: const <Widget>[
+      DrawerHeader(
+        decoration: BoxDecoration(
+          color: Color(0xFF5A78EA),
+        ),
+        child: Text(
+          "lalaland",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+          ),
+        ),
+      ),
+      ListTile(
+        leading: Icon(Icons.score),
+        title: Text('我的积分'),
+      ),
+      ListTile(
+        leading: Icon(Icons.settings),
+        title: Text('系统设置'),
+      ),
+      ListTile(
+        leading: Icon(Icons.logout),
+        title: Text('退出登录'),
+      ),
+    ],
+  );
 }

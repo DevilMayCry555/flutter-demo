@@ -20,7 +20,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
     setState(() {
       loading = true;
     });
-    var res = await axios.get('/posts');
+    var res = await axios.get('/postss');
     setState(() {
       _list = res.data;
       loading = false;
@@ -55,7 +55,11 @@ class _SampleAppPageState extends State<SampleAppPage> {
       floatingActionButton: FloatingActionButton(
         heroTag: 'Async',
         tooltip: 'fetch',
-        onPressed: _fetchData,
+        onPressed: () => {
+          _fetchData().onError((error, stackTrace) {
+            _openModal(context, 'error', error.toString());
+          })
+        },
         child: const Icon(Icons.brush),
       ),
     );
@@ -64,8 +68,9 @@ class _SampleAppPageState extends State<SampleAppPage> {
   List<Widget> _getList(parent) {
     List<Widget> widgets = [];
     for (int i = 0; i < _list.length; i++) {
+      Map item = _list[i];
       widgets.add(GestureDetector(
-        onTap: () => _openModal(parent, i),
+        onTap: () => _openModal(parent, item['title'], item['body']),
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Text('Row $i'),
@@ -75,13 +80,12 @@ class _SampleAppPageState extends State<SampleAppPage> {
     return widgets;
   }
 
-  void _openModal(parent, int index) {
-    Map item = _list[index];
+  void _openModal(parent, String title, String body) {
     showDialog<String>(
       context: parent,
       builder: (BuildContext context) => AlertDialog(
-        title: Text(item['title']),
-        content: Text(item['body']),
+        title: Text(title),
+        content: Text(body),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context, 'Cancel'),

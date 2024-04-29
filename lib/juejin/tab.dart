@@ -51,17 +51,14 @@ class _ContentWidgetState extends State<ContentWidget>
             tabs: tabStrList.map((e) => Tab(text: e)).toList(),
           ),
           Expanded(
-            child: Container(
-              color: Colors.amber,
-              child: TabBarView(
-                // 同样使用TabBarView
-                controller: _tabController, // 关联同一个TabController
-                children: tabStrList
-                    .map((e) => JueJinMainPage(
-                          title: e,
-                        ))
-                    .toList(),
-              ),
+            child: TabBarView(
+              // 同样使用TabBarView
+              controller: _tabController, // 关联同一个TabController
+              children: tabStrList
+                  .map((e) => JueJinMainPage(
+                        title: e,
+                      ))
+                  .toList(),
             ),
           ),
         ],
