@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
         '/c': (context) => const MyFade(title: 'Animate'),
         '/d': (context) => const MyCounter(title: 'Counter'),
         '/e': (context) => const JueJinPage(title: 'JueJin'),
+        '/h': (context) => const MyHomePage(title: 'Home'),
       },
     );
   }
