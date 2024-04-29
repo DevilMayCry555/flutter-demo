@@ -13,7 +13,7 @@ import 'package:dio/dio.dart';
 
 Dio _dio = Dio(
   BaseOptions(
-    baseUrl: 'https://jsonplaceholder.typicode.com',
+    baseUrl: 'https://tydwin.top/api',
     connectTimeout: const Duration(seconds: 30), // 请求超时
     receiveTimeout: const Duration(seconds: 30), // 响应超时
     // 自定义请求头，ua不设置默认是：Dart/3.2 (dart:io)

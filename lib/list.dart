@@ -20,9 +20,9 @@ class _SampleAppPageState extends State<SampleAppPage> {
     setState(() {
       loading = true;
     });
-    var res = await axios.get('/posts');
+    var res = await axios.get('/open?type=user');
     setState(() {
-      _list = res.data;
+      _list = res.data['rows'];
       loading = false;
     });
   }
@@ -66,7 +66,8 @@ class _SampleAppPageState extends State<SampleAppPage> {
     for (int i = 0; i < _list.length; i++) {
       Map item = _list[i];
       widgets.add(GestureDetector(
-        onTap: () => _openModal(parent, item['title'], item['body']),
+        onTap: () =>
+            _openModal(parent, item['username'], item['birthday'].toString()),
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Text('Row $i'),
