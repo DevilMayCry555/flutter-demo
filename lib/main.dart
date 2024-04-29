@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'counter.dart';
-import 'fade.dart';
 import 'home.dart';
 import 'juejin/juejin.dart';
 import 'list.dart';
@@ -42,7 +41,6 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/a': (context) => const SampleAppPage(title: 'List'),
         '/b': (context) => const Signature(title: 'Canvas'),
-        '/c': (context) => const MyFade(title: 'Animate'),
         '/d': (context) => const MyCounter(title: 'Counter'),
         '/e': (context) => const JueJinPage(title: 'JueJin'),
         '/h': (context) => const MyHomePage(title: 'Home'),

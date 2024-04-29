@@ -47,7 +47,6 @@ class MyHomePage extends StatelessWidget {
 Map routes = {
   '/a': 'List',
   '/b': 'Canvas',
-  '/c': 'Animate',
   '/d': 'Counter',
   '/e': 'JueJin',
 };
