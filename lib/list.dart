@@ -20,7 +20,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
     setState(() {
       loading = true;
     });
-    var res = await axios.get('/postss');
+    var res = await axios.get('/posts');
     setState(() {
       _list = res.data;
       loading = false;
