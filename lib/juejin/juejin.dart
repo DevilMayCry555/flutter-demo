@@ -27,10 +27,10 @@ class _JueJinPageState extends State<JueJinPage> {
           children: [
             SearchBarWidget(),
             ContentWidget(),
-            BottomBarWidget()
           ], // 实例化这个搜索栏Widget
         ),
       ),
+      bottomNavigationBar: const BottomBarWidget(),
     );
   }
 }

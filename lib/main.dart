@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'counter.dart';
 import 'home.dart';
 import 'juejin/juejin.dart';
-import 'list.dart';
 import 'signature.dart';
 import 'splash.dart';
 
@@ -39,7 +38,6 @@ class MyApp extends StatelessWidget {
       ),
       home: const SplashScreen(),
       routes: <String, WidgetBuilder>{
-        '/a': (context) => const SampleAppPage(title: 'List'),
         '/b': (context) => const Signature(title: 'Canvas'),
         '/d': (context) => const MyCounter(title: 'Counter'),
         '/e': (context) => const JueJinPage(title: 'JueJin'),
