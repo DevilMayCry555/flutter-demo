@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'list.dart';
 
 List<String> tabStrList = [
-  '关注',
-  '推荐',
-  '热榜',
-  '头条',
-  '后端',
-  '前端',
-  'Android',
-  'iOS',
-  '人工智能',
-  '开发工具'
+  '衣',
+  '食',
+  '住',
+  '行',
+  '情绪',
+  '工作',
+  '护肤',
+  '游戏',
+  '生理',
+  '家庭'
 ];
 
 // 中间的内容面板

@@ -23,11 +23,11 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
       showUnselectedLabels: true, // 未选中的label是否展示
       currentIndex: _position,
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: '首页'),
-        BottomNavigationBarItem(icon: Icon(Icons.whatshot), label: '沸点'),
-        BottomNavigationBarItem(icon: Icon(Icons.zoom_out), label: '发现'),
-        BottomNavigationBarItem(icon: Icon(Icons.book), label: '课程'),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: '我'),
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: '待办'),
+        BottomNavigationBarItem(icon: Icon(Icons.whatshot), label: '历史'),
+        BottomNavigationBarItem(icon: Icon(Icons.zoom_out), label: '发布'),
+        BottomNavigationBarItem(icon: Icon(Icons.book), label: '兑换'),
+        BottomNavigationBarItem(icon: Icon(Icons.settings), label: '我的'),
       ],
     );
   }
