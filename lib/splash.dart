@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen>
     Timer(const Duration(seconds: 3), () {
       // Replace it with a function to navigate to your home screen
       // 如：Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomeScreen()));
-      Navigator.of(context).pushReplacementNamed('/h');
+      Navigator.of(context).pushReplacementNamed('/home');
     });
   }
 
