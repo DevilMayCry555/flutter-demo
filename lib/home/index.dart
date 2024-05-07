@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'bottom.dart';
+import 'drawer.dart';
 import 'tab.dart';
 
 class IndexPage extends StatefulWidget {
@@ -59,46 +60,7 @@ class _IndexPageState extends State<IndexPage> {
         onTap: _onTap,
         position: _position,
       ),
-      drawer: Drawer(
-        child: _leftDrawer(context),
-      ),
+      drawer: MyConsumer(parent: context),
     );
   }
-}
-
-ListView _leftDrawer(BuildContext context) {
-  List<ListTile> links = [
-    ListTile(
-      leading: const Icon(Icons.score),
-      title: const Text('Counter'),
-      onTap: () => {Navigator.of(context).pushNamed('/counter')},
-    ),
-    ListTile(
-      leading: const Icon(Icons.settings),
-      title: const Text('Canvas'),
-      onTap: () => {Navigator.of(context).pushNamed('/canvas')},
-    ),
-  ];
-  return ListView(
-    padding: EdgeInsets.zero,
-    children: <Widget>[
-      const DrawerHeader(
-        decoration: BoxDecoration(
-          color: Color(0xFF5A78EA),
-        ),
-        child: Text(
-          "lalaland",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-          ),
-        ),
-      ),
-      ...links,
-      const ListTile(
-        leading: Icon(Icons.logout),
-        title: Text('退出登录'),
-      ),
-    ],
-  );
 }

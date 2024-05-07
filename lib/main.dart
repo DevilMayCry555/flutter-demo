@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'counter.dart';
 import 'home/index.dart';
 import 'signature.dart';
 import 'splash.dart';
 
+Future<String> fetchData() async {
+  return Future.delayed(const Duration(seconds: 5), () {
+    return "Hello Flutter!";
+  });
+}
+
 void main() {
-  runApp(const MyApp());
+  // 全局状态管理 Provider
+  runApp(FutureProvider<String>(
+    create: (context) => fetchData(),
+    initialData: '加载中...',
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
