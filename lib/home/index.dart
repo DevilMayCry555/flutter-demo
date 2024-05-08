@@ -75,11 +75,6 @@ class _IndexPageState extends State<IndexPage> {
               title: const Text('Canvas'),
               onTap: () => {Navigator.of(context).pushNamed('/canvas')},
             ),
-            ListTile(
-              leading: const Icon(Icons.bubble_chart),
-              title: const Text('Consumer'),
-              onTap: () => {Navigator.of(context).pushNamed('/consumer')},
-            ),
             const ListTile(
               leading: Icon(Icons.logout),
               title: Text('退出登录'),
