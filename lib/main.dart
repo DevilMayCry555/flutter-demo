@@ -8,7 +8,7 @@ import 'splash.dart';
 
 Future<String> fetchData() async {
   return Future.delayed(const Duration(seconds: 5), () {
-    return "Hello Flutter!";
+    return "Hello Admin!";
   });
 }
 

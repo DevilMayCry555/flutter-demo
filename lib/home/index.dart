@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'bottom.dart';
-import 'drawer.dart';
 import 'tab.dart';
+import 'user.dart';
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key, required this.title});
@@ -60,7 +60,33 @@ class _IndexPageState extends State<IndexPage> {
         onTap: _onTap,
         position: _position,
       ),
-      drawer: MyConsumer(parent: context),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const UserInfo(),
+            ListTile(
+              leading: const Icon(Icons.score),
+              title: const Text('Counter'),
+              onTap: () => {Navigator.of(context).pushNamed('/counter')},
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Canvas'),
+              onTap: () => {Navigator.of(context).pushNamed('/canvas')},
+            ),
+            ListTile(
+              leading: const Icon(Icons.bubble_chart),
+              title: const Text('Consumer'),
+              onTap: () => {Navigator.of(context).pushNamed('/consumer')},
+            ),
+            const ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('退出登录'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
