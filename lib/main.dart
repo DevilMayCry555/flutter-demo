@@ -1,3 +1,4 @@
+import 'package:demo/home/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -6,7 +7,7 @@ import 'home/index.dart';
 import 'signature.dart';
 
 Future<String> fetchData() async {
-  return Future.delayed(const Duration(seconds: 1), () {
+  return Future.delayed(const Duration(seconds: 3), () {
     return "Hello Admin!";
   });
 }
@@ -16,7 +17,11 @@ void main() {
   runApp(FutureProvider<String>(
     create: (context) => fetchData(),
     initialData: '加载中',
-    child: const MyApp(),
+    child: Consumer<String>(
+      builder: (context, data, child) {
+        return const MyApp();
+      },
+    ),
   ));
 }
 
@@ -25,6 +30,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<String>(context, listen: true);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -46,11 +52,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
         useMaterial3: true,
       ),
-      home: const IndexPage(title: 'Home'),
+      home: SplashScreen(over: data == '加载中'),
       routes: <String, WidgetBuilder>{
         '/canvas': (context) => const Signature(title: 'Canvas'),
         '/counter': (context) => const MyCounter(title: 'Counter'),
-        // '/home': (context) => const IndexPage(title: 'Home'),
+        '/home': (context) => const IndexPage(title: 'Home'),
       },
     );
   }

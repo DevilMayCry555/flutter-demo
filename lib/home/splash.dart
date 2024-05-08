@@ -1,9 +1,9 @@
-// splash_screen.dart
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({super.key, required this.over});
+  final bool over;
 
   @override
   State<StatefulWidget> createState() => _SplashScreenState();
@@ -13,7 +13,6 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late AnimationController controller;
   var done = true;
-  var over = false;
 
   @override
   void initState() {
@@ -30,8 +29,8 @@ class _SplashScreenState extends State<SplashScreen>
       vsync: this,
     );
     void loop() {
-      if (over) {
-        Navigator.of(context).pop();
+      if (widget.over) {
+        Navigator.of(context).pushReplacementNamed('/home');
       }
       if (done) {
         controller.forward();

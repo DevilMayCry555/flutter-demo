@@ -1,3 +1,4 @@
+import 'package:demo/home/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,6 +38,8 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
+    var data = Provider.of<String>(context, listen: true);
+    // return Consumer<String>(builder: (context, data, child) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -60,43 +63,40 @@ class _IndexPageState extends State<IndexPage> {
         onTap: _onTap,
         position: _position,
       ),
-      drawer: Consumer<String>(
-        builder: (context, data, child) {
-          return Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                DrawerHeader(
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF5A78EA),
-                  ),
-                  child: Text(
-                    data,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                    ),
-                  ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: const BoxDecoration(
+                color: Color(0xFF5A78EA),
+              ),
+              child: Text(
+                data,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
                 ),
-                ListTile(
-                  leading: const Icon(Icons.score),
-                  title: const Text('Counter'),
-                  onTap: () => {Navigator.of(context).pushNamed('/counter')},
-                ),
-                ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: const Text('Canvas'),
-                  onTap: () => {Navigator.of(context).pushNamed('/canvas')},
-                ),
-                const ListTile(
-                  leading: Icon(Icons.logout),
-                  title: Text('退出登录'),
-                ),
-              ],
+              ),
             ),
-          );
-        },
+            ListTile(
+              leading: const Icon(Icons.score),
+              title: const Text('Counter'),
+              onTap: () => {Navigator.of(context).pushNamed('/counter')},
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Canvas'),
+              onTap: () => {Navigator.of(context).pushNamed('/canvas')},
+            ),
+            const ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('退出登录'),
+            ),
+          ],
+        ),
       ),
     );
+    // });
   }
 }
