@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'counter.dart';
 import 'home/index.dart';
 import 'signature.dart';
-import 'splash.dart';
 
 Future<String> fetchData() async {
   return Future.delayed(const Duration(seconds: 1), () {
@@ -16,7 +15,7 @@ void main() {
   // 全局状态管理 Provider
   runApp(FutureProvider<String>(
     create: (context) => fetchData(),
-    initialData: '加载中...',
+    initialData: '加载中',
     child: const MyApp(),
   ));
 }
@@ -47,11 +46,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: const IndexPage(title: 'Home'),
       routes: <String, WidgetBuilder>{
         '/canvas': (context) => const Signature(title: 'Canvas'),
         '/counter': (context) => const MyCounter(title: 'Counter'),
-        '/home': (context) => const IndexPage(title: 'Home'),
+        // '/home': (context) => const IndexPage(title: 'Home'),
       },
     );
   }
