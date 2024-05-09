@@ -1,4 +1,3 @@
-import 'package:demo/home/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +29,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var data = Provider.of<String>(context, listen: true);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -52,11 +50,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
         useMaterial3: true,
       ),
-      home: SplashScreen(over: data == '加载中'),
+      home: const IndexPage(title: 'Home'),
       routes: <String, WidgetBuilder>{
         '/canvas': (context) => const Signature(title: 'Canvas'),
         '/counter': (context) => const MyCounter(title: 'Counter'),
-        '/home': (context) => const IndexPage(title: 'Home'),
       },
     );
   }

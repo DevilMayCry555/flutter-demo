@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key, required this.over});
-  final bool over;
+  const SplashScreen({super.key});
 
   @override
   State<StatefulWidget> createState() => _SplashScreenState();
@@ -12,7 +11,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late AnimationController controller;
-  var done = true;
 
   @override
   void initState() {
@@ -28,27 +26,11 @@ class _SplashScreenState extends State<SplashScreen>
       /// 这个Tiker除了在垂直同步时发出信号，还在运行时创建一个介于0-1间的线性差值。
       vsync: this,
     );
-    void loop() {
-      if (widget.over) {
-        Navigator.of(context).pushReplacementNamed('/home');
-      }
-      if (done) {
-        controller.forward();
-        setState(() {
-          done = false;
-        });
-      } else {
-        controller.reverse();
-        setState(() {
-          done = true;
-        });
-      }
-      Timer(const Duration(seconds: 3), () {
-        loop();
-      });
-    }
+    controller.forward();
 
-    loop();
+    Timer(const Duration(seconds: 3), () {
+      // loop();
+    });
   }
 
   @override
