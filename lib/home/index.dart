@@ -1,4 +1,3 @@
-import 'package:demo/home/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +22,9 @@ class _IndexPageState extends State<IndexPage> {
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _position);
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(builder: (context) => const SplashScreen()),
+    // );
   }
 
   void _onTap(int selectedIndex) {
@@ -38,7 +40,7 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    var data = Provider.of<String>(context, listen: true);
+    String name = Provider.of<String>(context, listen: true);
     // return Consumer<String>(builder: (context, data, child) {
     return Scaffold(
       appBar: AppBar(
@@ -72,7 +74,7 @@ class _IndexPageState extends State<IndexPage> {
                 color: Color(0xFF5A78EA),
               ),
               child: Text(
-                data,
+                name,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 24,

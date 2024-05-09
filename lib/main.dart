@@ -1,3 +1,4 @@
+import 'package:demo/home/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,7 @@ void main() {
   // 全局状态管理 Provider
   runApp(FutureProvider<String>(
     create: (context) => fetchData(),
-    initialData: '加载中',
+    initialData: '',
     child: Consumer<String>(
       builder: (context, data, child) {
         return const MyApp();
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    String name = Provider.of<String>(context, listen: true);
+    int current = name == '' ? 1 : 0;
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -50,10 +53,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
         useMaterial3: true,
       ),
-      home: const IndexPage(title: 'Home'),
+      // home: const IndexPage(title: 'Home'),
+      home: IndexedStack(
+        index: current,
+        children: const [IndexPage(title: 'Home'), SplashScreen()],
+      ),
       routes: <String, WidgetBuilder>{
         '/canvas': (context) => const Signature(title: 'Canvas'),
         '/counter': (context) => const MyCounter(title: 'Counter'),
+        '/home': (context) => const IndexPage(title: 'Home'),
+        // '/loading': (context) => const SplashScreen(),
       },
     );
   }
