@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'list.dart';
 
 List<String> tabStrList = [
-  '饭',
+  '家',
   '旅',
   '购',
+  '食',
+  '色',
   '性',
-  '情',
-  '家',
 ];
 
 // 中间的内容面板
@@ -53,6 +53,7 @@ class _ContentWidgetState extends State<ContentWidget>
               children: tabStrList
                   .map((e) => JueJinMainPage(
                         title: e,
+                        tid: tabStrList.indexOf(e),
                       ))
                   .toList(),
             ),

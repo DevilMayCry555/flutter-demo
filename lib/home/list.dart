@@ -6,14 +6,15 @@ import 'package:flutter/material.dart';
 import '../http.dart';
 
 class JueJinMainPage extends StatelessWidget {
-  const JueJinMainPage({super.key, required this.title});
+  const JueJinMainPage({super.key, required this.title, required this.tid});
 
   final String title;
+  final int tid;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: fetchData(),
+      future: fetchData(tid),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         switch (snapshot.connectionState) {
           // 这两个状态很少发生，一般只走 waiting 和 done
@@ -73,8 +74,8 @@ class JueJinMainPage extends StatelessWidget {
   }
 }
 
-Future<List> fetchData() async {
-  var res = await axios.get('/open?type=user');
+Future<List> fetchData(int type) async {
+  var res = await axios.get('/open?route=task&type=$type');
   return res.data['rows'];
 }
 
