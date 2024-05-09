@@ -1,10 +1,10 @@
-import 'package:demo/home/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'counter.dart';
 import 'home/index.dart';
 import 'signature.dart';
+import 'splash.dart';
 
 Future<String> fetchData() async {
   return Future.delayed(const Duration(seconds: 3), () {
