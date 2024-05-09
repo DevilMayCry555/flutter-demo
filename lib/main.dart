@@ -61,8 +61,6 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/canvas': (context) => const Signature(title: 'Canvas'),
         '/counter': (context) => const MyCounter(title: 'Counter'),
-        '/home': (context) => const IndexPage(title: 'Home'),
-        // '/loading': (context) => const SplashScreen(),
       },
     );
   }
