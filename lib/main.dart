@@ -7,8 +7,9 @@ import 'signature.dart';
 import 'splash.dart';
 
 Future<String> fetchData() async {
+  // throw 'lalala';
   return Future.delayed(const Duration(seconds: 3), () {
-    return "Hello Admin!";
+    return "tydly";
   });
 }
 

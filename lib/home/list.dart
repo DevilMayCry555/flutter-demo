@@ -2,8 +2,16 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../http.dart';
+
+Future<List> fetchData(int type, String identity) async {
+  var res = await axios.get('/open',
+      queryParameters: {'route': 'task', 'type': type, 'identity': identity});
+  // print('lalala');
+  return res.data['rows'];
+}
 
 class JueJinMainPage extends StatelessWidget {
   const JueJinMainPage({super.key, required this.title, required this.tid});
@@ -13,8 +21,12 @@ class JueJinMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String userkey = Provider.of<String>(context, listen: true);
+    if (userkey == '') {
+      return const Text('loading...');
+    }
     return FutureBuilder(
-      future: fetchData(tid),
+      future: fetchData(tid, userkey),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         switch (snapshot.connectionState) {
           // 这两个状态很少发生，一般只走 waiting 和 done
@@ -72,11 +84,6 @@ class JueJinMainPage extends StatelessWidget {
       ),
     );
   }
-}
-
-Future<List> fetchData(int type) async {
-  var res = await axios.get('/open?route=task&type=$type');
-  return res.data['rows'];
 }
 
 void _openModal(BuildContext parent, String title, String body) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
+// import 'dart:async';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -28,10 +28,9 @@ class _SplashScreenState extends State<SplashScreen>
     );
     controller.forward();
 
-    Timer(const Duration(seconds: 3), () {
-      // loop();
-      // Navigator.of(context).pop();
-    });
+    // Timer(const Duration(seconds: 3), () {
+    //   // Navigator.of(context).pop();
+    // });
   }
 
   @override

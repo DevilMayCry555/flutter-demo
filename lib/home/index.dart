@@ -74,7 +74,7 @@ class _IndexPageState extends State<IndexPage> {
                 color: Color(0xFF5A78EA),
               ),
               child: Text(
-                name,
+                'Hello $name!',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 24,
