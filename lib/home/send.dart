@@ -42,6 +42,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
     6,
   ];
   double _value = 1;
+  String title = '';
+  String content = '';
+  String points = '';
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +64,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             },
             onChanged: (v) {
               print('onChanged:' + v);
+              setState(() => title = v);
             },
             // onSubmitted: (v) {
             //   FocusScope.of(context).requestFocus(_focusNode);
@@ -82,6 +86,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
             onChanged: (v) {
               print('onChanged:' + v);
+              setState(() => content = v);
             },
           ),
           const SizedBox(height: 16),
@@ -108,7 +113,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             style: const TextStyle(color: Colors.blue),
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'point',
+              labelText: 'points',
             ),
             maxLength: 4,
             onEditingComplete: () {
@@ -116,6 +121,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             },
             onChanged: (v) {
               print('onChanged:' + v);
+              setState(() => points = v);
             },
             // onSubmitted: (v) {
             //   FocusScope.of(context).requestFocus(_focusNode);
