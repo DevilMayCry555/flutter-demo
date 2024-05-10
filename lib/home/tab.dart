@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'list.dart';
 
 List<String> tabStrList = [
-  '家',
-  '旅',
-  '购',
+  '衣',
   '食',
-  '色',
+  '住',
+  '行',
+  '身',
   '性',
 ];
 
