@@ -13,8 +13,8 @@ Future<List> fetchData(int type, String identity) async {
   return res.data['rows'];
 }
 
-class ListMainPage extends StatelessWidget {
-  const ListMainPage({super.key, required this.title, required this.tid});
+class ListDonePage extends StatelessWidget {
+  const ListDonePage({super.key, required this.title, required this.tid});
 
   final String title;
   final int tid;
@@ -66,15 +66,15 @@ class ListMainPage extends StatelessWidget {
   }
 
   ListView _getList(BuildContext parent, List rows) {
-    List list = rows.skipWhile((value) => !value['perfect_time']).toList();
+    List list = rows.skipWhile((value) => !!value['perfect_time']).toList();
     return ListView.separated(
       itemCount: list.length,
       itemBuilder: (context, i) {
         Map item = list[i];
         return ListTile(
-          leading: const Icon(Icons.question_mark_rounded),
+          leading: const Icon(Icons.task_alt_rounded),
           title: Text(item['points']),
-          subtitle: Text('${item['create_time']}'),
+          subtitle: Text('${item['create_time']} ~ ${item['perfect_time']}'),
           trailing: const Icon(Icons.more),
           onTap: () => _openModal(context, item['title'], item['content']),
         );
@@ -96,11 +96,11 @@ void _openModal(BuildContext parent, String title, String body) {
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.pop(context, 'Cancel'),
-          child: const Text('Delete'),
+          child: const Text('Cancel'),
         ),
         TextButton(
           onPressed: () => Navigator.pop(context, 'OK'),
-          child: const Text('Finish'),
+          child: const Text('OK'),
         ),
       ],
     ),

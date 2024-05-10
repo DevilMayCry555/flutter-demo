@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'list.dart';
+import 'list_done.dart';
 
 List<String> tabStrList = [
   '衣',
@@ -12,14 +12,14 @@ List<String> tabStrList = [
 ];
 
 // 中间的内容面板
-class ContentWidget extends StatefulWidget {
-  const ContentWidget({super.key});
+class ContentDoneWidget extends StatefulWidget {
+  const ContentDoneWidget({super.key});
 
   @override
   State<StatefulWidget> createState() => _ContentWidgetState();
 }
 
-class _ContentWidgetState extends State<ContentWidget>
+class _ContentWidgetState extends State<ContentDoneWidget>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -51,7 +51,7 @@ class _ContentWidgetState extends State<ContentWidget>
               // 同样使用TabBarView
               controller: _tabController, // 关联同一个TabController
               children: tabStrList
-                  .map((e) => ListMainPage(
+                  .map((e) => ListDonePage(
                         title: e,
                         tid: tabStrList.indexOf(e),
                       ))

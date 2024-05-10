@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'bottom.dart';
+import 'send.dart';
 import 'tab.dart';
+import 'tab_done.dart';
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key, required this.title});
@@ -54,8 +56,8 @@ class _IndexPageState extends State<IndexPage> {
           onPageChanged: _onPageChanged,
           children: const [
             Column(children: [ContentWidget()]),
-            Text('待办...'),
-            Text('发布...'),
+            Column(children: [ContentDoneWidget()]),
+            Column(children: [CustomTextField()]),
             Text('兑换...'),
             Text('我的...'),
           ],
