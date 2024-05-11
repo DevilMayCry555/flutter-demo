@@ -4,15 +4,6 @@ import 'package:provider/provider.dart';
 import '../http.dart';
 import 'hook.dart';
 
-List<String> tabStrList = [
-  '衣',
-  '食',
-  '住',
-  '行',
-  '身',
-  '性',
-];
-
 Future postData(Map data) async {
   var res = await axios.post(
     '/open',
@@ -20,6 +11,16 @@ Future postData(Map data) async {
   );
   // print('lalala');
   return res;
+}
+
+initValues(List<String> tabs) {
+  List<double> list = [];
+  double i = 1;
+  while (i <= tabs.length) {
+    list.add(i);
+    i = i + 1;
+  }
+  return list;
 }
 
 class CustomTextField extends StatefulWidget {
@@ -46,14 +47,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
     super.dispose();
   }
 
-  List<double> data = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-  ];
+  List<double> data = initValues(tabStrList);
+
   double _value = 1;
   String title = '';
   String content = '';

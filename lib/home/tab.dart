@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'hook.dart';
 import 'list.dart';
-
-List<String> tabStrList = [
-  '衣',
-  '食',
-  '住',
-  '行',
-  '身',
-  '性',
-];
 
 // 中间的内容面板
 class ContentWidget extends StatefulWidget {
