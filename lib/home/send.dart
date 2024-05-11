@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../http.dart';
 
 List<String> tabStrList = [
   '衣',
@@ -8,6 +11,15 @@ List<String> tabStrList = [
   '身',
   '性',
 ];
+
+Future postData(Map data) async {
+  var res = await axios.post(
+    '/open',
+    data: data,
+  );
+  // print('lalala');
+  return res;
+}
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField({super.key});
@@ -45,6 +57,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
   String title = '';
   String content = '';
   String points = '';
+  void onSend() {
+    String userkey = Provider.of<String>(context, listen: false);
+    postData({
+      'title': title,
+      'content': content,
+      'points': int.parse(points),
+      'identity': userkey,
+      'type': _value,
+    }).then((value) => print(value));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +81,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
               border: OutlineInputBorder(),
               labelText: 'title',
             ),
-            onEditingComplete: () {
-              print('onEditingComplete');
-            },
+            // onEditingComplete: () {
+            //   print('onEditingComplete');
+            // },
             onChanged: (v) {
-              print('onChanged:' + v);
+              // print('onChanged:' + v);
               setState(() => title = v);
             },
             // onSubmitted: (v) {
@@ -85,25 +107,27 @@ class _CustomTextFieldState extends State<CustomTextField> {
               labelText: 'content',
             ),
             onChanged: (v) {
-              print('onChanged:' + v);
+              // print('onChanged:' + v);
               setState(() => content = v);
             },
           ),
           const SizedBox(height: 16),
           const Text('类别：'),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Wrap(
             children: data
-                .map((e) => Row(
-                      children: [
-                        Radio<double>(
-                          activeColor: Colors.orangeAccent,
-                          value: e,
-                          groupValue: _value,
-                          onChanged: (v) => setState(() => _value = v ?? 0),
-                        ),
-                        Text(tabStrList[e.toInt() - 1]),
-                      ],
+                .map((e) => SizedBox(
+                      width: 100,
+                      child: Row(
+                        children: [
+                          Radio<double>(
+                            activeColor: Colors.orangeAccent,
+                            value: e,
+                            groupValue: _value,
+                            onChanged: (v) => setState(() => _value = v ?? 0),
+                          ),
+                          Text(tabStrList[e.toInt() - 1]),
+                        ],
+                      ),
                     ))
                 .toList(),
           ),
@@ -116,11 +140,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
               labelText: 'points',
             ),
             maxLength: 4,
-            onEditingComplete: () {
-              print('onEditingComplete');
-            },
+            // onEditingComplete: () {
+            //   print('onEditingComplete');
+            // },
             onChanged: (v) {
-              print('onChanged:' + v);
+              // print('onChanged:' + v);
               setState(() => points = v);
             },
             // onSubmitted: (v) {
@@ -129,15 +153,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
             //   _controller.clear();
             // },
           ),
-          const SizedBox(height: 16),
           RawMaterialButton(
             elevation: 2,
             fillColor: Colors.blue,
             splashColor: Colors.orange,
             textStyle: const TextStyle(color: Colors.white),
-            onLongPress: () => print('onLongPress'),
+            onPressed: onSend,
+            // onLongPress: () => print('onLongPress'),
             child: const Text('发布'),
-            onPressed: () => print('onPressed'),
           )
         ],
       ),

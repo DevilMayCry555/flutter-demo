@@ -53,7 +53,7 @@ class _ContentWidgetState extends State<ContentWidget>
               children: tabStrList
                   .map((e) => ListMainPage(
                         title: e,
-                        tid: tabStrList.indexOf(e),
+                        tid: tabStrList.indexOf(e) + 1,
                       ))
                   .toList(),
             ),

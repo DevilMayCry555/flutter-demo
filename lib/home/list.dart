@@ -7,10 +7,22 @@ import 'package:provider/provider.dart';
 import '../http.dart';
 
 Future<List> fetchData(int type, String identity) async {
-  var res = await axios.get('/open',
-      queryParameters: {'route': 'task', 'type': type, 'identity': identity});
+  var res = await axios
+      .get('/open', queryParameters: {'type': type, 'identity': identity});
   // print('lalala');
   return res.data['rows'];
+}
+
+Future deleteData(String uid) async {
+  var res = await axios.delete('/open', queryParameters: {'uid': uid});
+  // print('lalala');
+  return res;
+}
+
+Future updateData(String uid) async {
+  var res = await axios.put('/open', queryParameters: {'uid': uid});
+  // print('lalala');
+  return res;
 }
 
 class ListMainPage extends StatelessWidget {
@@ -66,17 +78,20 @@ class ListMainPage extends StatelessWidget {
   }
 
   ListView _getList(BuildContext parent, List rows) {
-    List list = rows.skipWhile((value) => !value['perfect_time']).toList();
+    List list =
+        rows.skipWhile((value) => !(value['perfect_time'] == 'null')).toList();
     return ListView.separated(
       itemCount: list.length,
       itemBuilder: (context, i) {
         Map item = list[i];
+        String n = item['points'];
         return ListTile(
           leading: const Icon(Icons.question_mark_rounded),
-          title: Text(item['points']),
+          title: Text('$n points'),
           subtitle: Text('${item['create_time']}'),
           trailing: const Icon(Icons.more),
-          onTap: () => _openModal(context, item['title'], item['content']),
+          onTap: () =>
+              _openModal(context, item['title'], item['content'], item['uid']),
         );
       },
       separatorBuilder: (context, index) => const Divider(
@@ -87,7 +102,15 @@ class ListMainPage extends StatelessWidget {
   }
 }
 
-void _openModal(BuildContext parent, String title, String body) {
+void _openModal(BuildContext parent, String title, String body, String uid) {
+  void onDelete(BuildContext context) {
+    deleteData(uid).then((value) => Navigator.pop(context, value.toString()));
+  }
+
+  void onFinish(BuildContext context) {
+    updateData(uid).then((value) => Navigator.pop(context, value.toString()));
+  }
+
   showDialog<String>(
     context: parent,
     builder: (BuildContext context) => AlertDialog(
@@ -95,11 +118,11 @@ void _openModal(BuildContext parent, String title, String body) {
       content: Text(body),
       actions: <Widget>[
         TextButton(
-          onPressed: () => Navigator.pop(context, 'Cancel'),
+          onPressed: () => onDelete(context),
           child: const Text('Delete'),
         ),
         TextButton(
-          onPressed: () => Navigator.pop(context, 'OK'),
+          onPressed: () => onFinish(context),
           child: const Text('Finish'),
         ),
       ],

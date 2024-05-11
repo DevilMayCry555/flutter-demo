@@ -17,9 +17,9 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      onTap: (position) {
+      onTap: (value) {
         // setState(() => _position = position);
-        widget.onTap(position);
+        widget.onTap(value);
       },
       selectedItemColor: Colors.blue, // 选中时的颜色
       unselectedItemColor: Colors.black, // 未选中时的颜色
@@ -28,10 +28,10 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
       // currentIndex: _position,
       currentIndex: widget.position,
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: '待办'),
-        BottomNavigationBarItem(icon: Icon(Icons.whatshot), label: '历史'),
-        BottomNavigationBarItem(icon: Icon(Icons.zoom_out), label: '发布'),
-        BottomNavigationBarItem(icon: Icon(Icons.book), label: '兑换'),
+        BottomNavigationBarItem(icon: Icon(Icons.article), label: '待办'),
+        BottomNavigationBarItem(icon: Icon(Icons.history), label: '历史'),
+        BottomNavigationBarItem(icon: Icon(Icons.add_box), label: '发布'),
+        BottomNavigationBarItem(icon: Icon(Icons.apple), label: '兑换'),
         BottomNavigationBarItem(icon: Icon(Icons.settings), label: '我的'),
       ],
     );

@@ -66,7 +66,8 @@ class ListDonePage extends StatelessWidget {
   }
 
   ListView _getList(BuildContext parent, List rows) {
-    List list = rows.skipWhile((value) => !!value['perfect_time']).toList();
+    List list =
+        rows.skipWhile((value) => value['perfect_time'] == 'null').toList();
     return ListView.separated(
       itemCount: list.length,
       itemBuilder: (context, i) {
