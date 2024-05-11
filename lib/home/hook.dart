@@ -31,5 +31,5 @@ List<String> tabStrList = [
   '住',
   '行',
   '身',
-  '性',
+  '心',
 ];
