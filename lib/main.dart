@@ -14,6 +14,15 @@ Future<String> fetchData() async {
   });
 }
 
+// class CounterProvider extends ChangeNotifier {
+//   var count = 0;
+//   var key = 'tydly';
+//   void increment() {
+//     count++;
+//     notifyListeners(); //通知更新
+//   }
+// }
+
 void main() {
   // 全局状态管理 Provider
   runApp(FutureProvider<String>(

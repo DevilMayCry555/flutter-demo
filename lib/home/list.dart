@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../http.dart';
+import 'hook.dart';
 
 Future<List> fetchData(int type, String identity) async {
   var res = await axios
@@ -78,8 +80,12 @@ class ListMainPage extends StatelessWidget {
   }
 
   ListView _getList(BuildContext parent, List rows) {
-    List list =
-        rows.skipWhile((value) => !(value['perfect_time'] == 'null')).toList();
+    List list = [];
+    for (var element in rows) {
+      if (element['perfect_time'] == null) {
+        list.add(element);
+      }
+    }
     return ListView.separated(
       itemCount: list.length,
       itemBuilder: (context, i) {
@@ -104,11 +110,13 @@ class ListMainPage extends StatelessWidget {
 
 void _openModal(BuildContext parent, String title, String body, String uid) {
   void onDelete(BuildContext context) {
-    deleteData(uid).then((value) => Navigator.pop(context, value.toString()));
+    deleteData(uid).then((value) => showEntry(parent, '删除成功'));
+    Navigator.pop(context, 'onDelete');
   }
 
   void onFinish(BuildContext context) {
-    updateData(uid).then((value) => Navigator.pop(context, value.toString()));
+    updateData(uid).then((value) => showEntry(parent, '任务达成'));
+    Navigator.pop(context, 'onFinish');
   }
 
   showDialog<String>(

@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import '../http.dart';
 
 Future<List> fetchData(int type, String identity) async {
-  var res = await axios.get('/open',
-      queryParameters: {'route': 'task', 'type': type, 'identity': identity});
+  var res = await axios
+      .get('/open', queryParameters: {'type': type, 'identity': identity});
   // print('lalala');
   return res.data['rows'];
 }
@@ -66,15 +66,20 @@ class ListDonePage extends StatelessWidget {
   }
 
   ListView _getList(BuildContext parent, List rows) {
-    List list =
-        rows.skipWhile((value) => value['perfect_time'] == 'null').toList();
+    List list = [];
+    for (var element in rows) {
+      if (element['perfect_time'] != null) {
+        list.add(element);
+      }
+    }
     return ListView.separated(
       itemCount: list.length,
       itemBuilder: (context, i) {
         Map item = list[i];
+        String n = item['points'];
         return ListTile(
           leading: const Icon(Icons.task_alt_rounded),
-          title: Text(item['points']),
+          title: Text('$n points'),
           subtitle: Text('${item['create_time']} ~ ${item['perfect_time']}'),
           trailing: const Icon(Icons.more),
           onTap: () => _openModal(context, item['title'], item['content']),
