@@ -59,10 +59,31 @@ class _CustomTextFieldState extends State<CustomTextField> {
   String points = '';
   void onSend() {
     String userkey = Provider.of<String>(context, listen: false);
+    var p = int.tryParse(points);
+    if (title == '' || content == '' || p == null) {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          // title: Text(''),
+          content: const Text('存在空白项'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('ok'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
     postData({
       'title': title,
       'content': content,
-      'points': int.parse(points),
+      'points': p,
       'identity': userkey,
       'type': _value,
     }).then((value) => print(value));
