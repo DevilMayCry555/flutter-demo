@@ -14,10 +14,10 @@ Future<List> fetchData(int type, String identity) async {
 }
 
 class ListDonePage extends StatelessWidget {
-  const ListDonePage({super.key, required this.title, required this.tid});
+  const ListDonePage({super.key, required this.title, required this.type});
 
   final String title;
-  final int tid;
+  final int type;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class ListDonePage extends StatelessWidget {
       return const Text('loading...');
     }
     return FutureBuilder(
-      future: fetchData(tid, userkey),
+      future: fetchData(type, userkey),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         switch (snapshot.connectionState) {
           // 这两个状态很少发生，一般只走 waiting 和 done
