@@ -98,6 +98,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     showEntry(context, '发布成功');
     setState(() {
       title = '';
+      loading = false;
     });
     _controller.clear();
     return value;
