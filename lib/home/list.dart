@@ -28,10 +28,20 @@ Future updateData(String uid) async {
 }
 
 class ListMainPage extends StatelessWidget {
-  const ListMainPage({super.key, required this.title, required this.type});
+  const ListMainPage({
+    super.key,
+    required this.title,
+    required this.type,
+    required this.setType,
+  });
 
   final String title;
   final int type;
+  final Function(int) setType;
+
+  void refresh() {
+    setType(type - 1);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,34 +116,40 @@ class ListMainPage extends StatelessWidget {
       ),
     );
   }
-}
 
-void _openModal(BuildContext parent, String title, String body, String uid) {
-  void onDelete(BuildContext context) {
-    deleteData(uid).then((value) => showEntry(parent, '删除成功'));
-    Navigator.pop(context, 'onDelete');
-  }
+  void _openModal(BuildContext parent, String title, String body, String uid) {
+    void onDelete(BuildContext context) {
+      deleteData(uid)
+          .then((value) => showEntry(parent, '删除成功'))
+          .then((value) => refresh());
+      Navigator.pop(context, 'onDelete');
+    }
 
-  void onFinish(BuildContext context) {
-    updateData(uid).then((value) => showEntry(parent, '任务达成'));
-    Navigator.pop(context, 'onFinish');
-  }
+    void onFinish(BuildContext context) {
+      updateData(uid)
+          .then((value) => showEntry(parent, '任务达成'))
+          .then((value) => refresh());
+      Navigator.pop(context, 'onFinish');
+    }
 
-  showDialog<String>(
-    context: parent,
-    builder: (BuildContext context) => AlertDialog(
-      title: Text(title),
-      content: Text(body),
-      actions: <Widget>[
-        TextButton(
-          onPressed: () => onDelete(context),
-          child: const Text('Delete'),
+    showDialog<String>(
+      context: parent,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(title),
+        content: SingleChildScrollView(
+          child: Text(body),
         ),
-        TextButton(
-          onPressed: () => onFinish(context),
-          child: const Text('Finish'),
-        ),
-      ],
-    ),
-  );
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => onDelete(context),
+            child: const Text('Delete'),
+          ),
+          TextButton(
+            onPressed: () => onFinish(context),
+            child: const Text('Finish'),
+          ),
+        ],
+      ),
+    );
+  }
 }

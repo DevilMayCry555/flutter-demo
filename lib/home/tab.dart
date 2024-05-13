@@ -15,6 +15,12 @@ class _ContentWidgetState extends State<ContentWidget>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
+  void _setType(int idx) {
+    setState(() {
+      _tabController.index = idx;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -46,6 +52,7 @@ class _ContentWidgetState extends State<ContentWidget>
                   .map((e) => ListMainPage(
                         title: e,
                         type: tabStrList.indexOf(e) + 1,
+                        setType: _setType,
                       ))
                   .toList(),
             ),
