@@ -76,12 +76,17 @@ class ListDonePage extends StatelessWidget {
       itemCount: list.length,
       itemBuilder: (context, i) {
         Map item = list[i];
-        String n = item['points'];
         return ListTile(
           leading: const Icon(Icons.task_alt_rounded),
-          title: Text('$n points'),
-          subtitle: Text('${item['create_time']} ~ ${item['perfect_time']}'),
-          trailing: const Icon(Icons.more),
+          title: Text(item['title']),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(item['create_time']),
+              Text(item['perfect_time']),
+            ],
+          ),
+          trailing: Text(item['points']),
           onTap: () => _openModal(context, item['title'], item['content']),
         );
       },
@@ -98,12 +103,14 @@ void _openModal(BuildContext parent, String title, String body) {
     context: parent,
     builder: (BuildContext context) => AlertDialog(
       title: Text(title),
-      content: Text(body),
+      content: SingleChildScrollView(
+        child: Text(body),
+      ),
       actions: <Widget>[
-        TextButton(
-          onPressed: () => Navigator.pop(context, 'Cancel'),
-          child: const Text('Cancel'),
-        ),
+        // TextButton(
+        //   onPressed: () => Navigator.pop(context, 'Cancel'),
+        //   child: const Text('Cancel'),
+        // ),
         TextButton(
           onPressed: () => Navigator.pop(context, 'OK'),
           child: const Text('OK'),

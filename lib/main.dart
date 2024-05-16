@@ -39,10 +39,10 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
-    String name = Provider.of<String>(context, listen: true);
-    int current = name == '' ? 1 : 0;
+    var loading = Provider.of<String>(context, listen: true) == '';
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
       ),
       // home: const IndexPage(title: 'Home'),
       home: IndexedStack(
-        index: current,
+        index: loading ? 1 : 0,
         children: const [IndexPage(title: 'Home'), SplashScreen()],
       ),
       routes: <String, WidgetBuilder>{
