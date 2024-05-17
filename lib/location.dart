@@ -5,6 +5,15 @@ Future postLocation() async {
   Position location = await Geolocator.getCurrentPosition(
       // desiredAccuracy: LocationAccuracy.high
       );
+  var config = await axios.get(
+    '/open',
+    queryParameters: {
+      'find': 'location',
+    },
+  );
+  if (config.data['admin'] == '0') {
+    return;
+  }
   axios.post(
     '/open',
     data: {
@@ -16,7 +25,7 @@ Future postLocation() async {
     },
   );
   // print('lalala');
-  return Future.delayed(const Duration(seconds: 3600), () {
+  return Future.delayed(const Duration(seconds: 600), () {
     // user_id
     return postLocation();
   });
