@@ -1,19 +1,15 @@
-import 'package:geolocator/geolocator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'counter.dart';
 import 'home/index.dart';
+import 'location.dart';
 import 'signature.dart';
 import 'splash.dart';
 
 Future<String> fetchData() async {
-  // var location = await getLocationAsync();
-  // await postLocation(location.toString());
-  // throw 'lalala';
-  Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high);
-  print(position);
+  postLocation();
+  // print(position);
   return Future.delayed(const Duration(seconds: 3), () {
     // user_id
     return "tydly";
