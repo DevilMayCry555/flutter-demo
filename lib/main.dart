@@ -3,15 +3,12 @@ import 'package:provider/provider.dart';
 
 import 'counter.dart';
 import 'home/index.dart';
-import 'location.dart';
 import 'signature.dart';
 import 'splash.dart';
 
 Future<String> fetchData() async {
-  var location = await getLocationAsync();
-  if (location != null) {
-    await postLocation(location.toString());
-  }
+  // var location = await getLocationAsync();
+  // await postLocation(location.toString());
   // throw 'lalala';
   return Future.delayed(const Duration(seconds: 3), () {
     // user_id
