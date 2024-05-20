@@ -2,20 +2,10 @@ import 'http.dart';
 import 'package:geolocator/geolocator.dart';
 
 Future postLocation() async {
-  var config = await axios.get(
-    '/open',
-    queryParameters: {
-      'find': 'location',
-    },
-  );
-  if (config.data['admin'] == '0') {
-    // print('lalala');
-    return Future.delayed(const Duration(seconds: 60), () => postLocation());
-  }
   Position location = await Geolocator.getCurrentPosition(
-      // desiredAccuracy: LocationAccuracy.high
-      );
-  axios.post(
+    desiredAccuracy: LocationAccuracy.high,
+  );
+  var res = await axios.post(
     '/open',
     data: {
       'title': 'location',
@@ -26,5 +16,5 @@ Future postLocation() async {
     },
   );
 
-  return Future.delayed(const Duration(seconds: 300), () => postLocation());
+  return res;
 }
