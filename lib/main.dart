@@ -8,11 +8,13 @@ import 'signature.dart';
 import 'splash.dart';
 
 Future<String> fetchData() async {
-  await postLocation();
-  return Future.delayed(const Duration(seconds: 3), () {
-    // user_id
-    return "tydly";
-  });
+  var identity = "tydly";
+  await postLocation(identity);
+  // return Future.delayed(const Duration(seconds: 3), () {
+  //   // user_id
+  //   return identity;
+  // });
+  return identity;
 }
 
 // class CounterProvider extends ChangeNotifier {

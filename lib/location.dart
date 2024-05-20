@@ -1,17 +1,18 @@
 import 'http.dart';
 import 'package:geolocator/geolocator.dart';
 
-Future postLocation() async {
+Future postLocation(String identity) async {
   Position location = await Geolocator.getCurrentPosition(
     desiredAccuracy: LocationAccuracy.high,
   );
+
   var res = await axios.post(
     '/open',
     data: {
       'title': 'location',
       'content': location.toString(),
       'points': 1,
-      'identity': 'tydly',
+      'identity': identity,
       'type': 0,
     },
   );

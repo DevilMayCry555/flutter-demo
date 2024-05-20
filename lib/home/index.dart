@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../http.dart';
 import 'bottom.dart';
+import 'hook.dart';
 import 'send.dart';
 import 'tab.dart';
 import 'tab_done.dart';
+
+Future clearLocation(String identity) async {
+  var res =
+      await axios.delete('/open', queryParameters: {'identity': identity});
+  // print('lalala');
+  return res;
+}
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key, required this.title});
@@ -24,9 +33,6 @@ class _IndexPageState extends State<IndexPage> {
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _position);
-    // Navigator.of(context).push(
-    //   MaterialPageRoute(builder: (context) => const SplashScreen()),
-    // );
   }
 
   void _onTap(int selectedIndex) {
@@ -43,7 +49,10 @@ class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     String name = Provider.of<String>(context, listen: true);
-    // return Consumer<String>(builder: (context, data, child) {
+    void onClear() {
+      clearLocation(name).then((value) => showEntry(context, 'lalala'));
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -86,21 +95,21 @@ class _IndexPageState extends State<IndexPage> {
             ListTile(
               leading: const Icon(Icons.score),
               title: const Text('Counter'),
-              onTap: () => {Navigator.of(context).pushNamed('/counter')},
+              onTap: () => Navigator.of(context).pushNamed('/counter'),
             ),
             ListTile(
               leading: const Icon(Icons.settings),
               title: const Text('Canvas'),
-              onTap: () => {Navigator.of(context).pushNamed('/canvas')},
+              onTap: () => Navigator.of(context).pushNamed('/canvas'),
             ),
-            const ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('退出登录'),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('退出登录'),
+              onTap: () => onClear(),
             ),
           ],
         ),
       ),
     );
-    // });
   }
 }

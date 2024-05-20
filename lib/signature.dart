@@ -51,13 +51,13 @@ class _SignatureState extends State<Signature> {
             tooltip: 'Back',
             child: const Icon(Icons.home),
           ),
-          const SizedBox(height: 10),
-          FloatingActionButton(
-            heroTag: 'Send',
-            onPressed: () => Navigator.of(context).pop(),
-            tooltip: 'Send',
-            child: const Icon(Icons.send),
-          ),
+          // const SizedBox(height: 10),
+          // FloatingActionButton(
+          //   heroTag: 'Send',
+          //   onPressed: () => Navigator.of(context).pop(),
+          //   tooltip: 'Send',
+          //   child: const Icon(Icons.send),
+          // ),
         ],
       ),
     );
