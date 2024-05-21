@@ -32,6 +32,17 @@ class _MyWebviewState extends State<MyWebview> {
   double progress = 0;
   final urlController = TextEditingController();
 
+  void _refresh() {
+    getLocation().then(
+      (value) => webViewController?.loadUrl(
+        urlRequest: URLRequest(
+          url: Uri.parse(
+              "https://tydwin.top/map#/${value.longitude}/${value.latitude}"),
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -49,14 +60,7 @@ class _MyWebviewState extends State<MyWebview> {
         }
       },
     );
-    getLocation().then(
-      (value) => webViewController?.loadUrl(
-        urlRequest: URLRequest(
-          url: Uri.parse(
-              "https://tydwin.top/backdoor/location#/${value.longitude}/${value.latitude}"),
-        ),
-      ),
-    );
+    _refresh();
   }
 
   @override
@@ -67,7 +71,7 @@ class _MyWebviewState extends State<MyWebview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Official InAppWebView website")),
+      // appBar: AppBar(title: const Text("Official InAppWebView website")),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -185,6 +189,23 @@ class _MyWebviewState extends State<MyWebview> {
             // ),
           ],
         ),
+      ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: 'Back',
+            onPressed: () => Navigator.of(context).pop(),
+            tooltip: 'Back',
+            child: const Icon(Icons.home),
+          ),
+          FloatingActionButton(
+            heroTag: 'Refresh',
+            onPressed: _refresh,
+            tooltip: 'Refresh',
+            child: const Icon(Icons.refresh),
+          ),
+        ],
       ),
     );
   }
