@@ -65,16 +65,12 @@ class _ContentWidgetState extends State<ContentWidget>
   @override
   Widget build(BuildContext context) {
     void onDelete(String uid) {
-      deleteData(uid)
-          .then((value) => showEntry(context, '删除成功'))
-          .whenComplete(() => refresh());
+      deleteData(uid).whenComplete(() => refresh());
       Navigator.pop(context, 'onDelete');
     }
 
     void onFinish(String uid) {
-      updateData(uid)
-          .then((value) => showEntry(context, '任务达成'))
-          .whenComplete(() => refresh());
+      updateData(uid).whenComplete(() => refresh());
       Navigator.pop(context, 'onFinish');
     }
 
