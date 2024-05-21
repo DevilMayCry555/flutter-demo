@@ -6,6 +6,7 @@ import 'home/index.dart';
 import 'location.dart';
 import 'signature.dart';
 import 'splash.dart';
+import 'webview.dart';
 
 Future<String> fetchData() async {
   var identity = "tydly";
@@ -75,6 +76,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/canvas': (context) => const Signature(),
         '/counter': (context) => const MyCounter(title: 'Counter'),
+        '/webview': (context) => const MyWebview()
       },
     );
   }

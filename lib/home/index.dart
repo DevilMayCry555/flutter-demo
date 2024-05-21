@@ -1,19 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../http.dart';
 import 'bottom.dart';
-import 'hook.dart';
 import 'send.dart';
 import 'tab.dart';
 import 'tab_done.dart';
-
-Future clearLocation(String identity) async {
-  var res =
-      await axios.delete('/open', queryParameters: {'identity': identity});
-  // print('lalala');
-  return res;
-}
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key, required this.title});
@@ -49,9 +40,6 @@ class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     String name = Provider.of<String>(context, listen: true);
-    void onClear() {
-      clearLocation(name).then((value) => showEntry(context, 'lalala'));
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -105,7 +93,7 @@ class _IndexPageState extends State<IndexPage> {
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text('退出登录'),
-              onTap: () => onClear(),
+              onTap: () => Navigator.of(context).pushNamed('/webview'),
             ),
           ],
         ),
