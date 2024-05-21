@@ -33,22 +33,19 @@ void main() {
     initialData: '',
     child: Consumer<String>(
       builder: (context, data, child) {
-        return MyApp(
-          identity: data,
-        );
+        return const MyApp();
       },
     ),
   ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.identity});
+  const MyApp({super.key});
   // This widget is the root of your application.
-  final String identity;
 
   @override
   Widget build(BuildContext context) {
-    var loading = identity == '';
+    var loading = Provider.of<String>(context, listen: true) == '';
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
