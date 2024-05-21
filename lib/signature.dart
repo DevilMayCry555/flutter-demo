@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'location.dart';
 
 class Signature extends StatefulWidget {
-  const Signature({super.key, required this.title});
-
-  final String title;
+  const Signature({super.key});
 
   @override
   State<StatefulWidget> createState() => _SignatureState();
@@ -12,6 +13,17 @@ class Signature extends StatefulWidget {
 /// canvas
 class _SignatureState extends State<Signature> {
   List<Offset?> _points = <Offset>[];
+
+  void toPage() async {
+    var location = await getLocation();
+    var url =
+        'tydwin.top/backdoor/location#/${location.longitude}/${location.latitude}';
+    if (await canLaunchUrl(url as Uri)) {
+      await launchUrl(url as Uri);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +63,14 @@ class _SignatureState extends State<Signature> {
             tooltip: 'Back',
             child: const Icon(Icons.home),
           ),
-          // const SizedBox(height: 10),
-          // FloatingActionButton(
-          //   heroTag: 'Send',
-          //   onPressed: () => Navigator.of(context).pop(),
-          //   tooltip: 'Send',
-          //   child: const Icon(Icons.send),
-          // ),
+          // 使用url_launcher打开外部浏览器 、打开外部应用、拨打电话、发送短信、发送邮件
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: 'Map',
+            onPressed: toPage,
+            tooltip: 'Map',
+            child: const Icon(Icons.location_pin),
+          ),
         ],
       ),
     );

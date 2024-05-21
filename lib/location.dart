@@ -19,3 +19,11 @@ Future postLocation(String identity) async {
 
   return res;
 }
+
+Future<Position> getLocation() async {
+  Position location = await Geolocator.getCurrentPosition(
+    desiredAccuracy: LocationAccuracy.high,
+  );
+
+  return location;
+}

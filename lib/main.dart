@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
         children: const [IndexPage(title: 'Home'), SplashScreen()],
       ),
       routes: <String, WidgetBuilder>{
-        '/canvas': (context) => const Signature(title: 'Canvas'),
+        '/canvas': (context) => const Signature(),
         '/counter': (context) => const MyCounter(title: 'Counter'),
       },
     );
