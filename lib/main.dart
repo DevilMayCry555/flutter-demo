@@ -46,7 +46,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var loading = Provider.of<String>(context, listen: true) == '';
+    var user = Provider.of<String>(context, listen: true);
+    var loading = user == '';
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -76,7 +77,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/canvas': (context) => const Signature(),
         '/counter': (context) => const MyCounter(title: 'Counter'),
-        '/webview': (context) => const MyWebview()
+        '/webview': (context) => MyWebview(identity: user)
       },
     );
   }

@@ -27,3 +27,9 @@ Future<Position> getLocation() async {
 
   return location;
 }
+
+Future clearLocation(String identity) async {
+  var res =
+      await axios.delete('/open', queryParameters: {'identity': identity});
+  return res;
+}

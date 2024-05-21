@@ -2,10 +2,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
+import 'home/hook.dart';
 import 'location.dart';
 
 class MyWebview extends StatefulWidget {
-  const MyWebview({super.key});
+  const MyWebview({super.key, required this.identity});
+
+  final String identity;
 
   @override
   State<StatefulWidget> createState() => _MyWebviewState();
@@ -70,6 +73,16 @@ class _MyWebviewState extends State<MyWebview> {
 
   @override
   Widget build(BuildContext context) {
+    void onClear() {
+      clearLocation(widget.identity)
+          .then((value) => showEntry(context, 'clear ok'));
+    }
+
+    void onSave() {
+      postLocation(widget.identity)
+          .then((value) => showEntry(context, 'save ok'));
+    }
+
     return Scaffold(
       // appBar: AppBar(title: const Text("Official InAppWebView website")),
       body: SafeArea(
@@ -198,6 +211,20 @@ class _MyWebviewState extends State<MyWebview> {
             onPressed: () => Navigator.of(context).pop(),
             tooltip: 'Back',
             child: const Icon(Icons.home),
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: 'Clear',
+            onPressed: onClear,
+            tooltip: 'Clear',
+            child: const Icon(Icons.clear_all),
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: 'Save',
+            onPressed: onSave,
+            tooltip: 'Save',
+            child: const Icon(Icons.save),
           ),
           const SizedBox(height: 10),
           FloatingActionButton(
