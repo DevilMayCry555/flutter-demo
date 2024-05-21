@@ -199,6 +199,7 @@ class _MyWebviewState extends State<MyWebview> {
             tooltip: 'Back',
             child: const Icon(Icons.home),
           ),
+          const SizedBox(height: 10),
           FloatingActionButton(
             heroTag: 'Refresh',
             onPressed: _refresh,
