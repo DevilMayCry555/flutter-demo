@@ -69,15 +69,16 @@ class MyApp extends StatelessWidget {
       // home: const IndexPage(title: 'Home'),
       home: IndexedStack(
         index: loading ? 1 : 0,
-        children: const [
-          IndexPage(title: 'Home'),
-          SplashScreen(),
+        children: [
+          const IndexPage(title: 'Home'),
+          const SplashScreen(),
+          MyWebview(identity: user)
         ],
       ),
       routes: <String, WidgetBuilder>{
         '/canvas': (context) => const Signature(),
         '/counter': (context) => const MyCounter(title: 'Counter'),
-        '/webview': (context) => MyWebview(identity: user)
+        // '/webview': (context) => MyWebview(identity: user)
       },
     );
   }

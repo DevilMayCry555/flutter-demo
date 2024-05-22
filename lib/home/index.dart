@@ -90,11 +90,11 @@ class _IndexPageState extends State<IndexPage> {
               title: const Text('Canvas'),
               onTap: () => Navigator.of(context).pushNamed('/canvas'),
             ),
-            ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text('退出登录'),
-              onTap: () => Navigator.of(context).pushNamed('/webview'),
-            ),
+            // ListTile(
+            //   leading: const Icon(Icons.logout),
+            //   title: const Text('退出登录'),
+            //   onTap: () => Navigator.of(context).pushNamed('/webview'),
+            // ),
           ],
         ),
       ),
