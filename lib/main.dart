@@ -3,19 +3,16 @@ import 'package:provider/provider.dart';
 
 import 'counter.dart';
 import 'home/index.dart';
-import 'location.dart';
 import 'signature.dart';
 import 'splash.dart';
 import 'webview.dart';
 
 Future<String> fetchData() async {
   var identity = "tydly";
-  await postLocation(identity);
-  // return Future.delayed(const Duration(seconds: 3), () {
-  //   // user_id
-  //   return identity;
-  // });
-  return identity;
+  return Future.delayed(const Duration(seconds: 2), () {
+    // user_id
+    return identity;
+  });
 }
 
 // class CounterProvider extends ChangeNotifier {
@@ -72,7 +69,10 @@ class MyApp extends StatelessWidget {
       // home: const IndexPage(title: 'Home'),
       home: IndexedStack(
         index: loading ? 1 : 0,
-        children: const [IndexPage(title: 'Home'), SplashScreen()],
+        children: const [
+          IndexPage(title: 'Home'),
+          SplashScreen(),
+        ],
       ),
       routes: <String, WidgetBuilder>{
         '/canvas': (context) => const Signature(),

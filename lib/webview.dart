@@ -36,12 +36,17 @@ class _MyWebviewState extends State<MyWebview> {
   final urlController = TextEditingController();
 
   void _refresh() {
-    getLocation().then(
-      (value) => webViewController?.loadUrl(
-        urlRequest: URLRequest(
-          url: Uri.parse(
-              "https://tydwin.top/map#/${value.longitude}/${value.latitude}"),
-        ),
+    // getLocation().then(
+    //   (value) => webViewController?.loadUrl(
+    //     urlRequest: URLRequest(
+    //       url: Uri.parse(
+    //           "https://tydwin.top/map#/${value.longitude}/${value.latitude}"),
+    //     ),
+    //   ),
+    // );
+    webViewController?.loadUrl(
+      urlRequest: URLRequest(
+        url: Uri.parse("https://tydwin.top/map#${widget.identity}"),
       ),
     );
   }
@@ -63,7 +68,6 @@ class _MyWebviewState extends State<MyWebview> {
         }
       },
     );
-    _refresh();
   }
 
   @override
@@ -78,10 +82,10 @@ class _MyWebviewState extends State<MyWebview> {
           .then((value) => showEntry(context, 'clear ok'));
     }
 
-    void onSave() {
-      postLocation(widget.identity)
-          .then((value) => showEntry(context, 'save ok'));
-    }
+    // void onSave() {
+    //   postLocation(widget.identity)
+    //       .then((value) => showEntry(context, 'save ok'));
+    // }
 
     return Scaffold(
       // appBar: AppBar(title: const Text("Official InAppWebView website")),
@@ -111,6 +115,7 @@ class _MyWebviewState extends State<MyWebview> {
                     pullToRefreshController: pullToRefreshController,
                     onWebViewCreated: (controller) {
                       webViewController = controller;
+                      _refresh();
                     },
                     onLoadStart: (controller, url) {
                       setState(() {
@@ -168,7 +173,7 @@ class _MyWebviewState extends State<MyWebview> {
                       });
                     },
                     onConsoleMessage: (controller, consoleMessage) {
-                      print(consoleMessage);
+                      // print(consoleMessage);
                     },
                   ),
                   progress < 1.0
@@ -219,13 +224,13 @@ class _MyWebviewState extends State<MyWebview> {
             tooltip: 'Clear',
             child: const Icon(Icons.clear_all),
           ),
-          const SizedBox(height: 10),
-          FloatingActionButton(
-            heroTag: 'Save',
-            onPressed: onSave,
-            tooltip: 'Save',
-            child: const Icon(Icons.save),
-          ),
+          // const SizedBox(height: 10),
+          // FloatingActionButton(
+          //   heroTag: 'Save',
+          //   onPressed: onSave,
+          //   tooltip: 'Save',
+          //   child: const Icon(Icons.save),
+          // ),
           const SizedBox(height: 10),
           FloatingActionButton(
             heroTag: 'Refresh',
