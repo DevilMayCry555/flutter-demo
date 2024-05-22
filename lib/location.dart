@@ -3,12 +3,12 @@ import 'package:geolocator/geolocator.dart';
 
 const isProd = bool.fromEnvironment('dart.vm.product');
 Future postLocation(String identity) async {
-  if (isProd) {
-    return Future.delayed(const Duration(seconds: 1));
-  }
   Position location = await Geolocator.getCurrentPosition(
     desiredAccuracy: LocationAccuracy.high,
   );
+  if (!isProd) {
+    return location;
+  }
   var res = await axios.post(
     '/open',
     data: {
