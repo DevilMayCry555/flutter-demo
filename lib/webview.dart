@@ -84,8 +84,9 @@ class _MyWebviewState extends State<MyWebview> {
                 children: [
                   InAppWebView(
                     key: webViewKey,
-                    initialUrlRequest:
-                        URLRequest(url: Uri.parse("https://tydwin.top/map")),
+                    initialUrlRequest: URLRequest(
+                        url: Uri.parse(
+                            "https://tydwin.top/map#${widget.identity}")),
                     initialOptions: options,
                     pullToRefreshController: pullToRefreshController,
                     onWebViewCreated: (controller) {
