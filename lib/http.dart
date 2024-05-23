@@ -11,18 +11,18 @@ import 'package:dio/dio.dart';
 // /todos	200 todos
 // /users	10 users
 
-Dio _dio = Dio(
-  BaseOptions(
-    baseUrl: 'https://tydwin.top/api',
-    connectTimeout: const Duration(seconds: 30), // 请求超时
-    receiveTimeout: const Duration(seconds: 30), // 响应超时
-    // 自定义请求头，ua不设置默认是：Dart/3.2 (dart:io)
-    headers: {},
-  ),
-);
-init() {
+Dio init(String base) {
+  Dio dio = Dio(
+    BaseOptions(
+      baseUrl: base,
+      connectTimeout: const Duration(seconds: 30), // 请求超时
+      receiveTimeout: const Duration(seconds: 30), // 响应超时
+      // 自定义请求头，ua不设置默认是：Dart/3.2 (dart:io)
+      headers: {},
+    ),
+  );
   // 初始化拦截器
-  _dio.interceptors.add(InterceptorsWrapper(onRequest: (option, handler) {
+  dio.interceptors.add(InterceptorsWrapper(onRequest: (option, handler) {
     // 在请求发起前做一些事情
     return handler.next(option);
   }, onResponse: (response, handler) {
@@ -32,10 +32,11 @@ init() {
     // 请求失败时做一些预处理
     return handler.next(error);
   }));
-  return _dio;
+  return dio;
 }
 
-Dio axios = init();
+Dio axios = init('https://tydwin.top/api');
+// Dio getip = init('https://api.ipify.org');
 
 // 异步等待请求加载完毕，注意async和await关键字的位置
 // Future<List> loadData() async {
