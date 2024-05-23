@@ -2,9 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-import 'home/hook.dart';
-import 'location.dart';
-
 class MyWebview extends StatefulWidget {
   const MyWebview({super.key, required this.identity});
 
@@ -80,15 +77,6 @@ class _MyWebviewState extends State<MyWebview> {
     if (widget.identity == '') {
       return const Text('loading...');
     }
-    void onClear() {
-      clearLocation(widget.identity)
-          .then((value) => showEntry(context, 'clear ok'));
-    }
-
-    // void onSave() {
-    //   postLocation(widget.identity)
-    //       .then((value) => showEntry(context, 'save ok'));
-    // }
 
     return Scaffold(
       // appBar: AppBar(title: const Text("Official InAppWebView website")),
@@ -211,38 +199,24 @@ class _MyWebviewState extends State<MyWebview> {
           ],
         ),
       ),
-      // floatingActionButton: Column(
-      //   mainAxisAlignment: MainAxisAlignment.end,
-      //   children: [
-      //     FloatingActionButton(
-      //       heroTag: 'Back',
-      //       onPressed: () => Navigator.of(context).pop(),
-      //       tooltip: 'Back',
-      //       child: const Icon(Icons.home),
-      //     ),
-      //     const SizedBox(height: 10),
-      //     FloatingActionButton(
-      //       heroTag: 'Clear',
-      //       onPressed: onClear,
-      //       tooltip: 'Clear',
-      //       child: const Icon(Icons.clear_all),
-      //     ),
-      //     const SizedBox(height: 10),
-      //     FloatingActionButton(
-      //       heroTag: 'Save',
-      //       onPressed: onSave,
-      //       tooltip: 'Save',
-      //       child: const Icon(Icons.save),
-      //     ),
-      //     const SizedBox(height: 10),
-      //     FloatingActionButton(
-      //       heroTag: 'Refresh',
-      //       onPressed: _refresh,
-      //       tooltip: 'Refresh',
-      //       child: const Icon(Icons.refresh),
-      //     ),
-      //   ],
-      // ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: 'Back',
+            onPressed: () => Navigator.of(context).pop(),
+            tooltip: 'Back',
+            child: const Icon(Icons.home),
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: 'Refresh',
+            onPressed: _refresh,
+            tooltip: 'Refresh',
+            child: const Icon(Icons.refresh),
+          ),
+        ],
+      ),
     );
   }
 }
