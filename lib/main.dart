@@ -8,7 +8,7 @@ import 'splash.dart';
 import 'webview.dart';
 
 Future<String> fetchData() async {
-  var identity = "tydly";
+  var identity = "human";
   return Future.delayed(const Duration(seconds: 2), () {
     // user_id
     return identity;

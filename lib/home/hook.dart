@@ -26,10 +26,10 @@ void showEntry(BuildContext context, String message) {
 }
 
 List<String> tabStrList = [
-  '衣',
-  '食',
-  '住',
-  '行',
-  '身',
-  '心',
+  '脸',
+  '臂',
+  '胸',
+  '腹',
+  '臀',
+  '腿',
 ];
