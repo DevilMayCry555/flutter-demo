@@ -86,7 +86,7 @@ class _IndexPageState extends State<IndexPage> {
               onTap: () => Navigator.of(context).pushNamed('/counter'),
             ),
             ListTile(
-              leading: const Icon(Icons.settings),
+              leading: const Icon(Icons.draw),
               title: const Text('Canvas'),
               onTap: () => Navigator.of(context).pushNamed('/canvas'),
             ),
