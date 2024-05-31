@@ -5,10 +5,12 @@ import 'counter.dart';
 import 'home/index.dart';
 import 'signature.dart';
 import 'splash.dart';
-import 'webview.dart';
+import 'weather.dart';
+// import 'webview.dart';
 
 Future<String> fetchData() async {
   var identity = "tydly";
+
   return Future.delayed(const Duration(seconds: 2), () {
     // user_id
     return identity;
@@ -77,7 +79,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/canvas': (context) => const Signature(),
         '/counter': (context) => const MyCounter(title: 'Counter'),
-        '/webview': (context) => MyWebview(identity: user)
+        '/webview': (context) => const WeatherPage()
       },
     );
   }
