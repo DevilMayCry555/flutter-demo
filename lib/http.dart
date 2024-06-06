@@ -36,7 +36,6 @@ Dio init(String base) {
 }
 
 Dio axios = init('https://tydwin.top/api');
-Dio geo = init('https://restapi.amap.com/v3');
 
 // 异步等待请求加载完毕，注意async和await关键字的位置
 // Future<List> loadData() async {
