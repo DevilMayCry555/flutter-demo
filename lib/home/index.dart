@@ -90,11 +90,6 @@ class _IndexPageState extends State<IndexPage> {
               title: const Text('Canvas'),
               onTap: () => Navigator.of(context).pushNamed('/canvas'),
             ),
-            ListTile(
-              leading: const Icon(Icons.cloud),
-              title: const Text('Weather'),
-              onTap: () => Navigator.of(context).pushNamed('/webview'),
-            ),
           ],
         ),
       ),
