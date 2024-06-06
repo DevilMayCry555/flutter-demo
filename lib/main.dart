@@ -8,7 +8,7 @@ import 'signature.dart';
 import 'splash.dart';
 
 Future<String> fetchData() async {
-  var identity = "tydly";
+  var identity = "calorie";
   await axios.post(
     '/open',
     data: 'flutter',

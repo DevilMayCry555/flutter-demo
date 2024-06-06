@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import 'bottom.dart';
 import 'send.dart';
@@ -39,7 +38,7 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    String name = Provider.of<String>(context, listen: true);
+    // String name = Provider.of<String>(context, listen: true);
 
     return Scaffold(
       appBar: AppBar(
@@ -68,13 +67,13 @@ class _IndexPageState extends State<IndexPage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              decoration: const BoxDecoration(
+            const DrawerHeader(
+              decoration: BoxDecoration(
                 color: Color(0xFF5A78EA),
               ),
               child: Text(
-                'Hello $name!',
-                style: const TextStyle(
+                'HELLO WORLD',
+                style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
                 ),
